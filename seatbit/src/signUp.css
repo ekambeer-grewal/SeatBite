@@ -1,0 +1,64 @@
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* URI Navy Blue Background */
+  background-color: #002147; 
+  font-family: sans-serif;
+}
+
+.signup-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  /* Keaney Blue top accent border */
+  border-top: 8px solid #68abe8; 
+}
+
+.signup-title {
+  color: #002147;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+
+.input-group {
+  margin-bottom: 1.2rem;
+}
+
+.signup-input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box; /* Ensures padding doesn't break width */
+  transition: border-color 0.3s;
+}
+
+.signup-input:focus {
+  outline: none;
+  border-color: #68abe8; /* Highlight with Keaney Blue */
+}
+
+.signup-btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 1rem;
+  background-color: #68abe8; /* URI Keaney Blue */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.signup-btn:hover {
+  background-color: #5596d1; /* Slightly darker shade for hover */
+}
