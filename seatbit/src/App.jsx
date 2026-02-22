@@ -20,8 +20,4 @@ export default function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/home" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
-      </Routes>
-    </BrowserRouter>
-    </UserTypeProvider>
-  );
-}
+      </
