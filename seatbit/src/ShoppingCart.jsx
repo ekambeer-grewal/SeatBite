@@ -31,6 +31,11 @@ export default function ShoppingCart() {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showCheckoutPopup, setShowCheckoutPopup] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [seatNumber, setSeatNumber] = useState("");
+  const [savingInfo, setSavingInfo] = useState(false);
+
 
   useEffect(() => {
     const fetchCart = async () => {
@@ -67,6 +72,26 @@ export default function ShoppingCart() {
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const tax = subtotal * 0.07;
   const total = subtotal + tax;
+
+  const handleConfirmCheckout = async () => {
+  if (!userName.trim()) { alert("Please enter your name."); return; }
+  if (!seatNumber.trim()) { alert("Please enter your seat number."); return; }
+
+  setSavingInfo(true);
+  try {
+    const user = auth.currentUser;
+    const cartRef = doc(db, "carts", user.uid);
+    await updateDoc(cartRef, {
+      userName: userName,
+      seatNumber: seatNumber,
+    });
+    setShowCheckoutPopup(false);
+    navigate("/confirmation");
+  } catch (err) {
+    console.error("Error saving info:", err);
+  }
+  setSavingInfo(false);
+  };
 
   return (
     <div
@@ -244,8 +269,9 @@ export default function ShoppingCart() {
           </p>
         </div>
 
+        
         <button
-          onClick={() => navigate("/configuration")}
+          onClick={() => setShowCheckoutPopup(true)}
           style={{
             width: "100%",
             backgroundColor: "#ECB443",
@@ -262,6 +288,122 @@ export default function ShoppingCart() {
           Proceed to Checkout →
         </button>
       </div>
+
+      {/* Checkout Popup */}
+      {showCheckoutPopup && (
+        <div
+          onClick={() => setShowCheckoutPopup(false)}
+          style={{
+            position: "fixed",
+            top: 0, left: 0, right: 0, bottom: 0,
+            backgroundColor: "rgba(0,0,0,0.7)",
+            zIndex: 100,
+            display: "flex",
+            alignItems: "flex-end",
+            justifyContent: "center",
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              backgroundColor: "#0f0a2e",
+              borderTopLeftRadius: "30px",
+              borderTopRightRadius: "30px",
+              width: "100%",
+              maxWidth: "480px",
+              padding: "32px 24px",
+              animation: "slideUp 0.3s ease",
+            }}
+          >
+            {/* Title */}
+            <h2 style={{ color: "#EDCA83", fontSize: "24px", fontWeight: "bold", marginBottom: "8px" }}>
+              Almost there! 🎉
+            </h2>
+            <p style={{ color: "#aaaaaa", fontSize: "14px", marginBottom: "24px" }}>
+              Enter your details so we can find you.
+            </p>
+
+            {/* Name field */}
+            <p style={{ color: "#ffffff", fontSize: "14px", fontWeight: "bold", marginBottom: "8px" }}>
+              Your Name *
+            </p>
+            <input
+              type="text"
+              placeholder="e.g. John Smith"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+              style={{
+                width: "100%",
+                backgroundColor: "rgba(255,255,255,0.1)",
+                border: "1px solid rgba(255,255,255,0.3)",
+                borderRadius: "16px",
+                padding: "16px",
+                color: "#ffffff",
+                fontSize: "16px",
+                marginBottom: "16px",
+                outline: "none",
+              }}
+            />
+
+            {/* Seat number field */}
+            <p style={{ color: "#ffffff", fontSize: "14px", fontWeight: "bold", marginBottom: "8px" }}>
+              Seat Number *
+            </p>
+            <input
+              type="text"
+              placeholder="e.g. A12, B07"
+              value={seatNumber}
+              onChange={(e) => setSeatNumber(e.target.value)}
+              style={{
+                width: "100%",
+                backgroundColor: "rgba(255,255,255,0.1)",
+                border: "1px solid rgba(255,255,255,0.3)",
+                borderRadius: "16px",
+                padding: "16px",
+                color: "#ffffff",
+                fontSize: "16px",
+                marginBottom: "32px",
+                outline: "none",
+              }}
+            />
+
+            {/* Confirm button */}
+            <button
+              onClick={handleConfirmCheckout}
+              disabled={savingInfo}
+              style={{
+                width: "100%",
+                backgroundColor: savingInfo ? "#a0a0a0" : "#ECB443",
+                color: "#000000",
+                fontWeight: "bold",
+                fontSize: "18px",
+                padding: "16px",
+                borderRadius: "50px",
+                border: "none",
+                cursor: savingInfo ? "not-allowed" : "pointer",
+                marginBottom: "16px",
+              }}
+            >
+              {savingInfo ? "Saving..." : "Confirm Order →"}
+            </button>
+
+            {/* Cancel */}
+            <p
+              onClick={() => setShowCheckoutPopup(false)}
+              style={{ color: "#aaaaaa", textAlign: "center", cursor: "pointer", fontSize: "14px" }}
+            >
+              Cancel
+            </p>
+          </div>
+        </div>
+      )}
+
+      <style>{`
+        @keyframes slideUp {
+          from { transform: translateY(100%); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+        }
+      `}</style>
     </div>
   );
 }
