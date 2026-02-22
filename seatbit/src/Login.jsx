@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "./shared/firebase/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import bg from "./assets/bg.png";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
+
 
 export default function Login() {
   const navigate = useNavigate();
@@ -133,7 +132,7 @@ export default function Login() {
               fontSize: "22px",
             }}
           >
-            {showPassword ? faEyeSlash : faEye}
+            {showPassword ? "🙈" : "👁️"}
           </button>
         </div>
 
