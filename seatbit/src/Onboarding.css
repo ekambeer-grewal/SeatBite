@@ -1,3 +1,5 @@
+
+
 .onboarding-page {
   display: flex;
   flex-direction: column;
@@ -5,10 +7,11 @@
   justify-content: center;
   height: 100vh;
   text-align: center;
+  background-color: #ffffff;
 }
 
 .logo-container {
-  width: 100px; /* Big web size */
+  width: 100px;
   height: auto;
   border-radius: 20px;
   margin-bottom: 20px;
@@ -18,7 +21,7 @@
 .welcome-text {
   font-size: 4rem;
   margin-bottom: 40px;
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 .button-container {
