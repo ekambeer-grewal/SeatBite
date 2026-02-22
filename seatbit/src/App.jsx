@@ -5,7 +5,7 @@ import Onboarding from "./Onboarding.jsx";
 import SignUp from "./signUp.jsx";
 import Home from "./home.jsx";
 import Cart from "./ShoppingCart.jsx";
-
+import { UserTypeProvider } from "./UserTypeContext.jsx";
 
 
 export default function App() {
