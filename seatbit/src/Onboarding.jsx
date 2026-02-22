@@ -114,7 +114,7 @@ function Onboarding() {
             onMouseEnter={(e) => (e.target.style.opacity = "0.85")}
             onMouseLeave={(e) => (e.target.style.opacity = "1")}
           >
-            Deliver
+            Delivery
           </button>
         </div>
       </div>
