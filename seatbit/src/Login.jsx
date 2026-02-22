@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "./shared/firebase/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import bg from "./assets/bg.png";
+import { useUserType } from "./UserTypeContext.jsx";
 
 
 export default function Login() {
@@ -20,12 +21,20 @@ export default function Login() {
     setTimeout(() => setShowSnackbar(false), 3000);
   };
 
+  // inside the component add:
+  const { userType } = useUserType();
+
+  // update handleLogin:
   const handleLogin = async () => {
     setError("");
     setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/home");
+      if (userType === "deliver") {
+        navigate("/delivery");
+      } else {
+        navigate("/home");
+      }
     } catch (err) {
       setLoading(false);
       if (err.code === "auth/user-not-found") showError("No account found with this email.");

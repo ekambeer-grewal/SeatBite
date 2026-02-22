@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "./shared/firebase/firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import bg from "./assets/bg.png";
+import { useUserType } from "./UserTypeContext.jsx";
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ export default function SignUp() {
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const { userType } = useUserType();
 
   const showError = (message) => {
     setError(message);
@@ -34,7 +36,11 @@ export default function SignUp() {
     setLoading(true);
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      navigate("/home");
+      if (userType === "deliver") {
+      navigate("/delivery");
+      } else {
+        navigate("/home");
+      }
     } catch (err) {
       setLoading(false);
       if (err.code === "auth/email-already-in-use") showError("Email already in use.");
