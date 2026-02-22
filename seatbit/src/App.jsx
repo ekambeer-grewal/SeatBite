@@ -4,6 +4,7 @@ import Login from "./Login.jsx";
 import Onboarding from "./Onboarding.jsx";
 import SignUp from "./signUp.jsx";
 import Home from "./home.jsx";
+import Cart from "./ShoppingCart.jsx";
 
 
 
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/splash" element={<Splash />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </BrowserRouter>
   );

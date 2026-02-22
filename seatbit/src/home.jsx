@@ -7,6 +7,7 @@ import MenuCard from "./MenuCard";
 
 
 export default function Home() {
+    const navigate = useNavigate();
     const [menuItems, setMenuItems] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -18,9 +19,6 @@ export default function Home() {
             id: doc.id,
             ...doc.data(),
             }));
-
-            // ADD THIS LINE
-            console.log("All items from Firebase:", items);
 
             setMenuItems(items);
             setLoading(false);
@@ -106,16 +104,30 @@ export default function Home() {
             style={{
                 display: "grid",
                 gridTemplateColumns: "1fr 1fr",
-                gap: "16px",
+                gap: "20px",
             }}
             >
             {menuItems.map((item) => (
-                <MenuCard key={item.id} item={item} />
-            ))}
+            <div key={item.id} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
+              
+              {/* Card */}
+              <MenuCard item={item} />
+
+              {/* Name underneath */}
+              <p style={{
+                color: "#ffffff",
+                fontSize: "13px",
+                fontWeight: "bold",
+                textAlign: "center",
+                width: "100%",
+              }}>
+                {item.Name || item.name}
+              </p>
             </div>
-        )}
-        
+          ))}
         </div>
-        
-     )
+      )}
+
+    </div>
+  );
 }
