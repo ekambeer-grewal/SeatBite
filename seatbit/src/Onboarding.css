@@ -7,5 +7,50 @@
   text-align: center;
 }
 
-.main-logo {
-  width: 300px; /* Bi
+.logo-container {
+  width: 100px; /* Big web size */
+  height: auto;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+
+.welcome-text {
+  font-size: 4rem;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.button-container {
+  display: flex;
+  gap: 20px;
+}
+
+.uri-btn {
+  padding: 20px 60px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  transition: transform 0.2s;
+}
+
+.uri-btn:hover {
+  transform: translateY(-5px);
+}
+
+.order {
+  background-color: var(--uri-light-blue);
+  color: #002147;
+}
+
+.deliver {
+  background-color: white;
+  color: #002147;
+}
+
+.uri-btn.signup{
+    background-color: #68abe8;
+    color: white;
+    margin-top:10px;
+}

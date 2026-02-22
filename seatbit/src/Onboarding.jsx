@@ -9,8 +9,16 @@ function Onboarding() {
   return (
     <div className="onboarding-container">
       {/* Top Center Image */}
-      <div className="logo-container">
-        <img src={logo} alt="SeatBite Logo" className="top-logo" />
+      <div className="logo-container"
+        style={{
+            backgroundImage: `url(${logo})`,
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            width: '300px',
+            height: '300px',
+        }}
+      >
+        
       </div>
 
       {/* Welcome Text */}
@@ -20,4 +28,13 @@ function Onboarding() {
       <div className="button-group">
         <button className="uri-btn order-btn" onClick={() => navigate('/splash')}>
           Order
-       
+        </button>
+        <button className="uri-btn deliver-btn" onClick={() => navigate('/splash')}>
+          Deliver
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default Onboarding;
