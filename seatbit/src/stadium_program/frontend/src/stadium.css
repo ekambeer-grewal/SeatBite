@@ -24,19 +24,17 @@ body {
 .seat {
   fill: #3b82f6;
   cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.seat {
-  transition: transform 0.2s, fill 0.2s; /* smooth animation */
+  transition: transform 0.2s, fill 0.2s;
   transform-origin: center; /* scale from the center */
 }
 
-.seat:hover {
+/* Hover effect only if seat is not part of the path */
+.seat:not(.path):hover {
   fill: #60a5fa;
   transform: scale(1.08);
 }
 
+/* Seat states */
 .seat.taken {
   fill: #ef4444;
   cursor: not-allowed;
@@ -48,6 +46,15 @@ body {
   stroke-width: 2;
 }
 
+/* Path to selected seat (nearest concession) */
+.seat.path {
+  fill: #ef4444; /* red for path */
+}
+.concession.path {
+  fill: #ef4444; /* red for the target concession */
+}
+
+/* Concessions */
 .concession {
   fill: #f97316;
   stroke: #fb923c;
@@ -55,6 +62,7 @@ body {
   filter: drop-shadow(0 0 10px rgba(249,115,22,0.5));
 }
 
+/* Labels */
 .label {
   fill: white;
   font-size: 12px;
@@ -69,6 +77,7 @@ body {
   text-anchor: middle;
 }
 
+/* Info panel below stadium */
 .seat-info {
   margin-top: 20px;
   background: #1e293b;

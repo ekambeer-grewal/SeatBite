@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stadium Map</title>
+  <style>
+    svg {
+      border: 1px solid black;
+    }
+
+    .seat {
+      fill: lightgray;
+      stroke: black;
+    }
+
+    .concession {
+      fill: green;
+    }
+
+    .label {
+      font-size: 12px;
+      text-anchor: middle;
+    }
+  </style>
+</head>
+<body>
+
+<svg id="stadium" width="800" height="600"></svg>
+
+<script>
+const svg = document.getElementById("stadium");
+
+const seatSize = 25;
+const seatGap = 10;
+const sectionOffset = 50; // distance from corners
+
+// Function to create 3x5 seating block at (startX, startY)
+function createSection(startX, startY, sectionId) {
+  for (let row = 0; row < 3; row++) {
+    for (let col = 0; col < 5; col++) {
+      const seat = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+      seat.setAttribute("x", startX + col * (seatSize + seatGap));
+      seat.setAttribute("y", startY + row * (seatSize + seatGap));
+      seat.setAttribute("width", seatSize);
+      seat.setAttribute("height", seatSize);
+      seat.setAttribute("class", "seat");
+      seat.setAttribute("id", `${sectionId}-R${row}-C${col}`);
+      svg.appendChild(seat);
+    }
+  }
+}
+
+// Place four seating sides
+createSection(sectionOffset, sectionOffset, "Side1"); // top-left
+createSection(520, sectionOffset, "Side2");           // top-right
+createSection(sectionOffset, 400, "Side3");           // bottom-left
+createSection(520, 400, "Side4");                     // bottom-right
+
+// Concession stands in corners
+function createConcession(x, y, label) {
+  const stand = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+  stand.setAttribute("x", x);
+  stand.setAttribute("y", y);
+  stand.setAttribute("width", 60);
+  stand.setAttribute("height", 60);
+  stand.setAttribute("class", "concession");
+
+  const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  text.setAttribute("x", x + 30);
+  text.setAttribute("y", y + 35);
+  text.setAttribute("class", "label");
+  text.textContent = label;
+
+  svg.appendChild(stand);
+  svg.appendChild(text);
+}
+
+createConcession(10, 10, "C1");
+createConcession(730, 10, "C2");
+createConcession(10, 520, "C3");
+createConcession(730, 520, "C4");
+
+</script>
+</body>
+</html>
