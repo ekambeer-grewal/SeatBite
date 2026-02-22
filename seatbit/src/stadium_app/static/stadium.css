@@ -1,0 +1,29 @@
+.field {
+    fill: #4CAF50;      /* green field */
+    stroke: #2E7D32;    /* darker border */
+    stroke-width: 4;
+}
+
+/* Seats */
+.seat {
+    fill: lightgray;
+    stroke: black;
+}
+
+/* Highlighted seat */
+.seat.selected {
+    fill: lightgreen;
+}
+
+/* Concession stands */
+.concession {
+    fill: burlywood;
+    stroke: black;
+}
+
+/* Seat and concession labels */
+.label {
+    font-size: 12px;
+    text-anchor: middle;
+    pointer-events: none;  /* So text doesn't block clicks */
+}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stadium Map</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stadium.css') }}">
+</head>
+<body>
+    <h2>Stadium Seat Path Finder</h2>
+
+    <input type="text" id="seatInput" placeholder="Enter your seat (e.g., A03)">
+    <button onclick="submitSeat()">Show Path</button>
+
+    <svg id="stadium" width="800" height="600"></svg>
+
+    <script src="{{ url_for('static', filename='stadium.js') }}"></script>
+</body>
+</html>
