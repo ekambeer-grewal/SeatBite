@@ -163,18 +163,18 @@ firebase deploy
   homeDelivery.jsx               → Delivery dashboard
   deliveryOrder.jsx              → Order detail + complete action
 
-/stadium_program
-  /frontend
-    /src
-      App.jsx                    → Stadium map entry point
-      stadium.jsx                → Interactive SVG stadium map
-      stadium.css                → Stadium map styles
-      main.jsx                   → Stadium app entry point
-      index.css                  → Stadium global styles
-      App.css                    → Stadium app styles
-
-AppBase.py                       → Pathfinding algorithm (shortest path to seat)
-server.py                        → Flask API server
+  /stadium_program
+    /frontend
+      /src
+        App.jsx                    → Stadium map entry point
+        stadium.jsx                → Interactive SVG stadium map
+        stadium.css                → Stadium map styles
+        main.jsx                   → Stadium app entry point
+        index.css                  → Stadium global styles
+        App.css                    → Stadium app styles
+    /backend
+      AppBase.py                       → Pathfinding algorithm (shortest path to seat)
+      server.py                        → Flask API server
 ```
 
 ---
@@ -290,12 +290,11 @@ All Firebase credentials are stored in `.env` and excluded from version control 
 
 ## 👥 Team
 
-Built at a hackathon in 30 hours.
+Built at a hackathon in 36 hours.
 
 - [ekambeer-grewal](https://github.com/ekambeer-grewal)
+- [marshall-kirk](https://github.com/marshall-kirk)
+- [Angeloote901](https://github.com/Angeloote901)
+- [dr-chicken-minus](https://github.com/dr-chicken-minus)
 
 ---
-
-## 📄 License
-
-MIT License — free to use, modify, and distribute.
